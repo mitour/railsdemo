@@ -10,10 +10,9 @@
       </ul>
     </div>
   <% end %>
-
-    <%= f.input       :title %><br>
-    <%= f.input       :content %><br>
-    <%= f.input       :publish_date %><br>
-    <%= f.association :user %><br>
-    <%= f.submit %>
+  <%= f.input       :title%><br>
+  <%= f.input       :content%><br>
+  <%= f.input       :publish_date %><br>
+  <%= f.association :user %><br>
+  <%= f.submit      :class => "btn btn-primary" %>
 <% end %>

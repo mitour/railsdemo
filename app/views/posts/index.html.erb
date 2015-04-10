@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Posts</h1>
-
-<table>
+<br>
+<% if current_user %>
+  <%= link_to '新增文章', new_post_path, class: "btn btn-primary" %>
+<% end %>
+<br>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Title</th>
@@ -20,10 +24,10 @@
         <td><%= post.try(:content) %></td>
         <td><%= post.try(:publish_date) %></td>
         <td><%= post.user.try(:name) %></td>
-        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Show', post, class: "btn btn-default" %></td>
         <% if can? :edit, post %>
-          <td><%= link_to 'Edit', edit_post_path(post) %></td>
-          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-default" %></td>
+          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
         <% end %>
       </tr>
     <% end %>
@@ -31,13 +35,6 @@
 </table>
 
 <br>
-<%= paginate @posts, :theme => 'twitter-bootstrap-3',
-                     :pagination_class => 'pagination-centered' %>
-<% if current_user%>
-  <span>Hi, <%= current_user.email %></span>
-  <%= link_to '新增文章', new_post_path %>
-  <%= link_to '登出',     destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to '登入',     new_user_session_path %>
-  <%= link_to '註冊',     new_user_registration_path %>
-<% end %>
+<div class="text-center">
+  <%= paginate @posts, :theme => 'twitter-bootstrap-3' %>
+</div>
